@@ -1,0 +1,276 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const GITHUB_REPO = "https://github.com/criminas/arcos";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Documentation — ArcOS</title>
+    <meta name="description" content="Full ArcOS documentation. Installation guide, configuration, privacy tweaks, performance settings, and FAQ." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <style>
+      .sidebar-link { display:block; padding:5px 12px; font-size:0.8125rem; color:rgba(255,255,255,0.45); border-radius:6px; transition:color 0.15s,background 0.15s; text-decoration:none; }
+      .sidebar-link:hover { color:rgba(255,255,255,0.85); background:rgba(255,255,255,0.05); }
+      .prose h2 { font-size:1.5rem; font-weight:700; color:#fff; margin-bottom:1rem; margin-top:2.5rem; }
+      .prose p { color:rgba(255,255,255,0.58); font-size:0.9375rem; line-height:1.75; margin-bottom:1rem; }
+      .prose ul { list-style:none; padding:0; margin-bottom:1rem; }
+      .prose ul li { padding:6px 0 6px 1.25rem; color:rgba(255,255,255,0.58); font-size:0.9375rem; position:relative; }
+      .prose ul li::before { content:"—"; position:absolute; left:0; color:rgba(255,255,255,0.2); }
+      .callout { background:rgba(37,99,235,0.08); border-left:3px solid #2563eb; border-radius:0 8px 8px 0; padding:12px 16px; margin:1.25rem 0; }
+      .callout .label { font-size:0.75rem; font-weight:600; color:#2563eb; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px; }
+      .callout p { margin:0; font-size:0.875rem; }
+      .step-num { flex-shrink:0; width:32px; height:32px; border-radius:8px; background:rgba(37,99,235,0.1); border:1px solid rgba(37,99,235,0.2); display:flex; align-items:center; justify-content:center; color:#2563eb; font-size:0.75rem; font-weight:700; }
+      .faq-item { padding-bottom:1.5rem; margin-bottom:1.5rem; border-bottom:1px solid rgba(255,255,255,0.07); }
+      .faq-q { font-size:0.9375rem; font-weight:600; color:rgba(255,255,255,0.88); margin-bottom:0.5rem; }
+    </style>
+  </head>
+  <body>
+    <Header />
+
+    <div class="max-w-7xl mx-auto px-6 pt-24 pb-24 flex gap-12">
+
+      <!-- Sidebar -->
+      <aside class="hidden lg:block w-52 flex-shrink-0">
+        <div class="sticky top-24">
+          <p class="text-[11px] font-semibold tracking-widest uppercase text-white/30 mb-3 px-3">On this page</p>
+          <nav class="flex flex-col gap-0.5">
+            <a href="#introduction" class="sidebar-link">Introduction</a>
+            <a href="#requirements" class="sidebar-link">Requirements</a>
+            <a href="#installation" class="sidebar-link">Installation</a>
+            <a href="#configuration" class="sidebar-link">Configuration</a>
+            <a href="#privacy-tweaks" class="sidebar-link">Privacy Tweaks</a>
+            <a href="#performance-tweaks" class="sidebar-link">Performance Tweaks</a>
+            <a href="#uninstall" class="sidebar-link">Uninstalling</a>
+            <a href="#faq" class="sidebar-link">FAQ</a>
+            <div class="my-3 border-t border-white/[0.07]"></div>
+            <a href={`${GITHUB_REPO}/issues`} target="_blank" rel="noopener noreferrer" class="sidebar-link flex items-center gap-1.5">
+              Support
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+            </a>
+            <a href="/privacy" class="sidebar-link">Privacy Policy</a>
+            <a href="/terms" class="sidebar-link">Terms of Service</a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="flex-1 min-w-0 max-w-3xl">
+
+        <div class="mb-12">
+          <a href="/" class="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors mb-8">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back to home
+          </a>
+          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">Docs</p>
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Documentation</h1>
+          <p class="text-white/50 text-base">Everything you need to install, configure, and understand ArcOS.</p>
+        </div>
+
+        <div class="prose">
+
+          <!-- Introduction -->
+          <section id="introduction" class="mb-16 scroll-mt-24">
+            <h2>Introduction</h2>
+            <p>ArcOS is a modified version of Windows designed from the ground up for speed, privacy, and minimal overhead. It removes telemetry, disables unnecessary background services, reduces default memory pressure, and applies targeted system-level tweaks — all while remaining fully compatible with your existing software.</p>
+            <p>ArcOS is not a standalone operating system. It is a set of scripts, policies, and configurations applied on top of a standard Windows installation. This means you retain full Windows compatibility and can update or revert at any time.</p>
+            <div class="callout">
+              <div class="label">Before you begin</div>
+              <p>Create a full system backup or restore point before installing ArcOS. While the process is reversible, having a backup ensures you can recover from any unexpected issues.</p>
+            </div>
+          </section>
+
+          <!-- Requirements -->
+          <section id="requirements" class="mb-16 scroll-mt-24">
+            <h2>System Requirements</h2>
+            <p>ArcOS supports Windows 10 (21H2+) and Windows 11. The following minimum specifications are required:</p>
+            <ul>
+              <li>CPU: 64-bit dual-core, 2 GHz or faster</li>
+              <li>RAM: 4 GB minimum (8 GB recommended)</li>
+              <li>Storage: 40 GB free disk space</li>
+              <li>Windows: 10 21H2 or later / Windows 11 any version</li>
+              <li>Internet connection for initial download</li>
+            </ul>
+            <p>ARM-based systems (e.g. Snapdragon X Elite laptops) are not currently supported. Support is planned for a future release.</p>
+          </section>
+
+          <!-- Installation -->
+          <section id="installation" class="mb-16 scroll-mt-24">
+            <h2>Installation</h2>
+            <p>Installation takes approximately 10–20 minutes depending on your hardware. Your PC will restart several times during the process.</p>
+            <div class="space-y-5 my-5">
+              <div class="flex gap-4">
+                <div class="step-num">1</div>
+                <div>
+                  <p style="color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:4px;">Download the installer</p>
+                  <p style="margin:0;">Download the latest ArcOS release from GitHub. Verify the SHA-256 checksum listed on the releases page before running.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="step-num">2</div>
+                <div>
+                  <p style="color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:4px;">Disable antivirus temporarily</p>
+                  <p style="margin:0;">Some antivirus software may flag system-configuration tools. Temporarily disable real-time protection before running the installer.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="step-num">3</div>
+                <div>
+                  <p style="color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:4px;">Run as Administrator</p>
+                  <p style="margin:0;">Right-click the installer and select "Run as administrator". Accept the UAC prompt to continue.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="step-num">4</div>
+                <div>
+                  <p style="color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:4px;">Choose your configuration</p>
+                  <p style="margin:0;">Select a preset. "Balanced" offers the best trade-off between speed and compatibility. Advanced users can customize individual settings.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="step-num">5</div>
+                <div>
+                  <p style="color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:4px;">Apply and restart</p>
+                  <p style="margin:0;">Click Apply. The system will apply all changes and restart automatically. Do not interrupt this process.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="step-num">6</div>
+                <div>
+                  <p style="color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:4px;">Post-install verification</p>
+                  <p style="margin:0;">After reboot, run the ArcOS Toolbox. A green status on all checks confirms a successful install.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Configuration -->
+          <section id="configuration" class="mb-16 scroll-mt-24">
+            <h2>Configuration</h2>
+            <p>After installation, the ArcOS Toolbox lets you fine-tune individual settings without re-running the full installer. It is accessible from the Start Menu.</p>
+            <ul>
+              <li>Toggle individual privacy policies on or off</li>
+              <li>Re-enable services that were disabled (e.g. Windows Update, print spooler)</li>
+              <li>Switch between power plan presets (Balanced, Performance, Ultra)</li>
+              <li>Apply or revert specific registry tweaks</li>
+              <li>Check for ArcOS updates</li>
+            </ul>
+            <p>All settings are non-destructive and reversible. The Toolbox keeps a log of every change applied.</p>
+          </section>
+
+          <!-- Privacy Tweaks -->
+          <section id="privacy-tweaks" class="mb-16 scroll-mt-24">
+            <h2>Privacy Tweaks</h2>
+            <p>ArcOS applies the following privacy-oriented changes by default. All can be toggled in the Toolbox.</p>
+            <ul>
+              <li>Disables Windows Telemetry (DiagTrack) — data collection set to Security level</li>
+              <li>Disables Windows Error Reporting (WerSvc)</li>
+              <li>Blocks Microsoft advertising ID and targeted advertising</li>
+              <li>Disables Cortana and Search indexing background tasks</li>
+              <li>Removes OneDrive auto-start integration</li>
+              <li>Blocks third-party CEIP tasks</li>
+              <li>Disables Activity History and Timeline sync</li>
+              <li>Turns off peer-to-peer update delivery</li>
+            </ul>
+          </section>
+
+          <!-- Performance Tweaks -->
+          <section id="performance-tweaks" class="mb-16 scroll-mt-24">
+            <h2>Performance Tweaks</h2>
+            <p>Performance is achieved through service reduction, power plan tuning, and registry adjustments. Key changes include:</p>
+            <ul>
+              <li>Disables 35+ non-essential background services</li>
+              <li>Sets power plan to High Performance (CPU not throttled at idle)</li>
+              <li>Adjusts MMCSS for lower audio/video latency</li>
+              <li>Tunes TCP/IP stack for lower network latency</li>
+              <li>Disables Spectre/Meltdown mitigations (optional — improves performance, see note below)</li>
+              <li>Reduces Windows visual effects to minimum (configurable)</li>
+            </ul>
+            <div class="callout">
+              <div class="label">Note on mitigations</div>
+              <p>Disabling Spectre/Meltdown mitigations improves CPU performance by 5–15% in some workloads. This is safe for personal, single-user PCs but is not recommended on shared or enterprise machines.</p>
+            </div>
+          </section>
+
+          <!-- Uninstall -->
+          <section id="uninstall" class="mb-16 scroll-mt-24">
+            <h2>Uninstalling ArcOS</h2>
+            <p>ArcOS can be fully reversed at any time. There are two methods:</p>
+            <div class="space-y-5 my-5">
+              <div class="flex gap-4">
+                <div class="step-num">A</div>
+                <div>
+                  <p style="color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:4px;">Using the Toolbox (recommended)</p>
+                  <p style="margin:0;">Open ArcOS Toolbox → Settings → Revert All Changes. This restores all service states, registry keys, and power settings to Windows defaults.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="step-num">B</div>
+                <div>
+                  <p style="color:rgba(255,255,255,0.9);font-weight:600;margin-bottom:4px;">System Restore</p>
+                  <p style="margin:0;">If you created a restore point before installation, use Windows System Restore (Control Panel → Recovery) to roll back to the pre-ArcOS state.</p>
+                </div>
+              </div>
+            </div>
+            <p>If neither method is available, a clean Windows in-place upgrade reinstall is the fallback. Personal files remain untouched.</p>
+          </section>
+
+          <!-- FAQ -->
+          <section id="faq" class="mb-16 scroll-mt-24">
+            <h2>Frequently Asked Questions</h2>
+            <div class="mt-4">
+              <div class="faq-item">
+                <p class="faq-q">Will ArcOS break Windows Update?</p>
+                <p>No. Windows Update remains fully functional by default. ArcOS only disables peer-to-peer update delivery. Automatic updates can optionally be deferred via the Toolbox.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">Does ArcOS work with Windows 11 24H2?</p>
+                <p>Yes. ArcOS is tested against all current Windows 10 and Windows 11 feature versions, including 24H2.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">Will I lose my files?</p>
+                <p>No. ArcOS only modifies system settings and services. Your personal files, applications, and user data are never touched.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">Can I use ArcOS on a work PC?</p>
+                <p>We strongly advise against it. ArcOS is designed for personal use. Applying it to a managed enterprise device may violate IT policy or cause compatibility issues with domain/group policy management.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">Is ArcOS open source?</p>
+                <p>Yes. The full source code is on GitHub under the MIT license. You can audit, fork, and contribute freely.</p>
+              </div>
+              <div class="faq-item" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
+                <p class="faq-q">Does ArcOS affect gaming performance?</p>
+                <p>Users frequently report better system responsiveness and lower baseline CPU/RAM usage. ArcOS is not specifically tuned for gaming, but the performance headroom it creates can be beneficial for any intensive workload.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Bottom nav -->
+        <div class="border-t border-white/[0.07] pt-8 flex items-center justify-between text-sm text-white/40">
+          <a href={`${GITHUB_REPO}/issues`} target="_blank" rel="noopener noreferrer" class="hover:text-white/70 transition-colors flex items-center gap-1.5">
+            Open a support issue
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+          </a>
+          <a href={GITHUB_REPO} target="_blank" rel="noopener noreferrer" class="hover:text-white/70 transition-colors flex items-center gap-1.5">
+            Edit on GitHub
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+          </a>
+        </div>
+
+      </main>
+    </div>
+
+    <Footer />
+  </body>
+</html>

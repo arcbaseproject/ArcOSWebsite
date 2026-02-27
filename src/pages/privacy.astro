@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+
+const sections = [
+  {
+    title: "Information We Collect",
+    body: `ArcOS is an open-source project that runs entirely on your own hardware. We do not collect, transmit, or store any personal data from your device.
+
+The ArcOS website (this site) may log standard server access data including IP addresses and page requests for operational purposes. These logs are retained for a maximum of 30 days and are not shared with third parties.
+
+If you choose to contact us or submit a GitHub issue, any information you voluntarily provide (such as your email address or username) is only used to respond to your inquiry.`,
+  },
+  {
+    title: "Cookies and Tracking",
+    body: `This website does not use cookies for tracking or advertising. No third-party analytics scripts are loaded. We do not use fingerprinting or cross-site tracking of any kind.
+
+If we ever introduce cookies in the future (for example, to remember theme preferences), we will update this policy and provide clear notice.`,
+  },
+  {
+    title: "Third-Party Services",
+    body: `This site links to external services such as GitHub and Discord. When you click those links, you leave our site and those services' own privacy policies apply. We have no control over data collected by those platforms.
+
+GitHub is used to host our source code repository. By contributing to the project, you agree to GitHub's terms of service.`,
+  },
+  {
+    title: "ArcOS Software",
+    body: `ArcOS itself is software you run locally on your own machine. The project explicitly removes telemetry and tracking that is present in stock Windows. ArcOS does not phone home, report usage, or transmit any data on your behalf.
+
+Open-source audit: All code is publicly available at our GitHub repository. Anyone can inspect, verify, and contribute.`,
+  },
+  {
+    title: "Children's Privacy",
+    body: `This website and the ArcOS project are not directed at children under the age of 13. We do not knowingly collect any personal information from children.`,
+  },
+  {
+    title: "Changes to This Policy",
+    body: `We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated effective date at the top. Continued use of the site after changes indicates acceptance of the updated policy.`,
+  },
+  {
+    title: "Contact",
+    body: `If you have any questions about this Privacy Policy, you can reach us by opening an issue on our GitHub repository or joining our community Discord server.`,
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy — ArcOS</title>
+    <meta name="description" content="ArcOS Privacy Policy. We don't collect your data. Learn how we handle the minimal information this website interacts with." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <Header />
+
+    <main class="max-w-3xl mx-auto px-6 pt-32 pb-24">
+
+      <!-- Back link -->
+      <a href="/" class="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors mb-10">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Back to home
+      </a>
+
+      <!-- Header -->
+      <div class="mb-12">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">Legal</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Privacy Policy</h1>
+        <p class="text-white/40 text-sm">Effective date: February 26, 2026</p>
+      </div>
+
+      <!-- Intro -->
+      <p class="text-white/60 text-base leading-relaxed mb-12">
+        Your privacy matters. ArcOS is built around the principle of removing tracking and telemetry from
+        your operating system. We apply the same philosophy to this website — minimal data, maximum transparency.
+      </p>
+
+      <!-- Sections -->
+      <div class="space-y-10">
+        {sections.map((s) => (
+          <section>
+            <h2 class="text-white font-bold text-xl mb-3">{s.title}</h2>
+            <div class="space-y-4">
+              {s.body.split('\n\n').map((para) => (
+                <p class="text-white/55 text-[15px] leading-relaxed">{para}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+    </main>
+
+    <!-- Minimal footer -->
+    <footer class="border-t border-white/[0.07] px-6 py-6">
+      <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
+        <span>&copy; {new Date().getFullYear()} ArcOS Project. Open-source under the MIT license.</span>
+        <div class="flex items-center gap-5">
+          <a href="/privacy" class="text-accent/70">Privacy</a>
+          <a href="/terms" class="hover:text-white/50 transition-colors">Terms</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

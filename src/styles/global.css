@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+    --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #020d1f;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* ─── Scattered dot particle background ─── */
+/* We simulate the sparse AtlasOS dots via a radial-gradient pattern */
+.dot-particles {
+    background-image:
+        radial-gradient(1.5px 1.5px at 18% 14%, rgba(255, 255, 255, 0.18) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 74% 9%, rgba(255, 255, 255, 0.12) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 40% 35%, rgba(255, 255, 255, 0.10) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 88% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 6% 55%, rgba(255, 255, 255, 0.10) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 60% 62%, rgba(255, 255, 255, 0.08) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 93% 70%, rgba(255, 255, 255, 0.13) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 25% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 78% 88%, rgba(255, 255, 255, 0.10) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 48% 92%, rgba(255, 255, 255, 0.07) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 13% 45%, rgba(255, 255, 255, 0.09) 0%, transparent 0%),
+        radial-gradient(1.5px 1.5px at 55% 22%, rgba(255, 255, 255, 0.11) 0%, transparent 0%);
+}
+
+/* ─── Blue radial glow (hero backdrop) ─── */
+.hero-glow {
+    background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(30, 64, 175, 0.45) 0%, transparent 70%);
+}
+
+/* ─── Blue accent text ─── */
+.text-accent {
+    color: #2563eb;
+}
+
+/* ─── Primary button ─── */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: #fff;
+    background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
+    transition: opacity 0.15s ease, box-shadow 0.15s ease;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+}
+
+/* ─── Secondary button ─── */
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: background 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.11);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Icon box (small dark square) ─── */
+.icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    flex-shrink: 0;
+}
+
+/* ─── Section separator (short center line) ─── */
+.section-sep {
+    width: 48px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    margin: 0 auto;
+}
+
+/* ─── Muted text ─── */
+.text-muted {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+/* ─── Dot grid (bottom footer area) ─── */
+.dot-grid-footer {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 20px 20px;
+}

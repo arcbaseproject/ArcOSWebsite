@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+
+const sections = [
+  {
+    title: "Acceptance of Terms",
+    body: `By downloading, installing, or using ArcOS, or by accessing this website, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use ArcOS or this website.
+
+These terms apply to the ArcOS software project and its associated website only. They do not modify or supersede the Microsoft Windows End User License Agreement, which governs your underlying Windows installation.`,
+  },
+  {
+    title: "License",
+    body: `ArcOS is distributed under the MIT License. You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software, subject to the conditions of the MIT License.
+
+The full text of the MIT License is included in the ArcOS source repository on GitHub. Third-party components bundled with ArcOS may be subject to their own licenses, which are identified in the repository.`,
+  },
+  {
+    title: "Use at Your Own Risk",
+    body: `ArcOS modifies your Windows installation. While we take great care to ensure stability and compatibility, modifying system-level components carries inherent risk. You are solely responsible for any consequences that arise from installing or using ArcOS.
+
+We strongly recommend creating a full system backup before installation. ArcOS is provided "as is", without warranty of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.`,
+  },
+  {
+    title: "No Warranty",
+    body: `In no event shall the ArcOS project, its contributors, or maintainers be liable for any claim, damages, or other liability — whether in an action of contract, tort, or otherwise — arising from, out of, or in connection with the software or the use or other dealings in the software.
+
+This includes, but is not limited to, loss of data, system instability, hardware incompatibility, or any interruption to your workflow.`,
+  },
+  {
+    title: "Prohibited Uses",
+    body: `You may not use ArcOS or this website to:
+• Attempt to compromise, exploit, or attack any system or infrastructure
+• Distribute unauthorized or maliciously modified versions of ArcOS that misrepresent their origin
+• Use the ArcOS name or branding to imply official endorsement of a product or service without written permission
+• Violate any applicable local, national, or international law or regulation`,
+  },
+  {
+    title: "Contributions",
+    body: `By submitting code, documentation, or other content to the ArcOS project (for example, via a GitHub pull request), you grant the project a perpetual, worldwide, non-exclusive, royalty-free license to use, reproduce, modify, and distribute your contribution under the project's open-source license.
+
+You represent that your contributions are your own original work, or that you have the necessary rights to submit them.`,
+  },
+  {
+    title: "Third-Party Links",
+    body: `This website contains links to external websites and services including GitHub, Discord, and others. We are not responsible for the content, privacy practices, or terms of those external services. Accessing them is at your own discretion.`,
+  },
+  {
+    title: "Modifications to These Terms",
+    body: `We reserve the right to update these Terms of Service at any time. Changes will be reflected on this page with an updated effective date. Continued use of ArcOS or this website after changes are posted constitutes acceptance of the revised terms.`,
+  },
+  {
+    title: "Contact",
+    body: `If you have questions about these terms, please open a discussion on our GitHub repository. We aim to respond to all inquiries within a reasonable timeframe.`,
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Terms of Service — ArcOS</title>
+    <meta name="description" content="ArcOS Terms of Service. Read our terms before using ArcOS or this website." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <Header />
+
+    <main class="max-w-3xl mx-auto px-6 pt-32 pb-24">
+
+      <!-- Back link -->
+      <a href="/" class="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors mb-10">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Back to home
+      </a>
+
+      <!-- Header -->
+      <div class="mb-12">
+        <p class="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">Legal</p>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Terms of Service</h1>
+        <p class="text-white/40 text-sm">Effective date: February 26, 2026</p>
+      </div>
+
+      <!-- Intro -->
+      <p class="text-white/60 text-base leading-relaxed mb-12">
+        Please read these terms carefully before using ArcOS or this website. They outline your rights,
+        responsibilities, and the limits of our liability as an open-source project.
+      </p>
+
+      <!-- Sections -->
+      <div class="space-y-10">
+        {sections.map((s) => (
+          <section>
+            <h2 class="text-white font-bold text-xl mb-3">{s.title}</h2>
+            <div class="space-y-4">
+              {s.body.split('\n\n').map((para) => (
+                <p class="text-white/55 text-[15px] leading-relaxed whitespace-pre-line">{para}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+    </main>
+
+    <!-- Minimal footer -->
+    <footer class="border-t border-white/[0.07] px-6 py-6">
+      <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
+        <span>&copy; {new Date().getFullYear()} ArcOS Project. Open-source under the MIT license.</span>
+        <div class="flex items-center gap-5">
+          <a href="/privacy" class="hover:text-white/50 transition-colors">Privacy</a>
+          <a href="/terms" class="text-accent/70">Terms</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
