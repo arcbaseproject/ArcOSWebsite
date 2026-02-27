@@ -1,7 +1,17 @@
 @import "tailwindcss";
 
+/* =======================================================
+   ARCOS DESIGN SYSTEM
+======================================================= */
+
 :root {
     --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+    --bg-primary: #020d1f;
+    --bg-elevated: #0b162e;
+    --accent: #2563eb;
+    --accent-soft: rgba(37, 99, 235, 0.25);
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --text-strong: #3b82f6;
 }
 
 :root {
@@ -13,7 +23,7 @@ html {
 }
 
 body {
-    background-color: #020d1f;
+    background-color: var(--bg-primary);
     color: #ffffff;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -21,105 +31,197 @@ body {
     overflow-x: hidden;
 }
 
-/* ─── Scattered dot particle background ─── */
-/* We simulate the sparse AtlasOS dots via a radial-gradient pattern */
-.dot-particles {
+/* =======================================================
+   SUBTLE MOVING BACKGROUND GRID (UNIQUE)
+======================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
     background-image:
-        radial-gradient(1.5px 1.5px at 18% 14%, rgba(255, 255, 255, 0.18) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 74% 9%, rgba(255, 255, 255, 0.12) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 40% 35%, rgba(255, 255, 255, 0.10) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 88% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 6% 55%, rgba(255, 255, 255, 0.10) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 60% 62%, rgba(255, 255, 255, 0.08) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 93% 70%, rgba(255, 255, 255, 0.13) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 25% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 78% 88%, rgba(255, 255, 255, 0.10) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 48% 92%, rgba(255, 255, 255, 0.07) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 13% 45%, rgba(255, 255, 255, 0.09) 0%, transparent 0%),
-        radial-gradient(1.5px 1.5px at 55% 22%, rgba(255, 255, 255, 0.11) 0%, transparent 0%);
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridDrift 30s linear infinite;
+    z-index: -2;
 }
 
-/* ─── Blue radial glow (hero backdrop) ─── */
+@keyframes gridDrift {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(60px);
+    }
+}
+
+/* =======================================================
+   HERO GLOW (SOFTER + ANIMATED)
+======================================================= */
+
 .hero-glow {
-    background: radial-gradient(ellipse 70% 55% at 50% 42%, rgba(30, 64, 175, 0.45) 0%, transparent 70%);
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%,
+            rgba(37, 99, 235, 0.35),
+            transparent 70%);
+    filter: blur(60px);
+    animation: glowPulse 6s ease-in-out infinite alternate;
+    pointer-events: none;
 }
 
-/* ─── Blue accent text ─── */
+@keyframes glowPulse {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+/* =======================================================
+   FADE IN ANIMATION SYSTEM
+======================================================= */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.9s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =======================================================
+   ACCENT
+======================================================= */
+
 .text-accent {
-    color: #2563eb;
+    color: var(--accent);
 }
 
-/* ─── Primary button ─── */
+/* =======================================================
+   BUTTONS (DEPTH + ELEVATION)
+======================================================= */
+
 .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
+    padding: 12px 22px;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 0.9375rem;
+    font-size: 0.95rem;
     color: #fff;
     background: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
-    transition: opacity 0.15s ease, box-shadow 0.15s ease;
+    transition: all 0.2s ease;
     white-space: nowrap;
 }
 
 .btn-primary:hover {
-    opacity: 0.9;
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
+    transform: translateY(-1px);
 }
 
-/* ─── Secondary button ─── */
 .btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
+    padding: 12px 22px;
     border-radius: 8px;
     font-weight: 500;
-    font-size: 0.9375rem;
+    font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.85);
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    transition: background 0.15s ease, border-color 0.15s ease;
+    transition: all 0.2s ease;
     white-space: nowrap;
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.11);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+    transform: translateY(-2px);
 }
 
-/* ─── Icon box (small dark square) ─── */
+/* =======================================================
+   ICON BOX (DEPTH + HOVER)
+======================================================= */
+
 .icon-box {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.7);
-    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.75);
+    transition: all 0.2s ease;
 }
 
-/* ─── Section separator (short center line) ─── */
+.icon-box:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* =======================================================
+   SECTION SEPARATOR
+======================================================= */
+
 .section-sep {
-    width: 48px;
+    width: 60px;
     height: 2px;
     background: rgba(255, 255, 255, 0.15);
     border-radius: 2px;
     margin: 0 auto;
 }
 
-/* ─── Muted text ─── */
-.text-muted {
-    color: rgba(255, 255, 255, 0.55);
+/* =======================================================
+   TERMINAL STYLE (UNIQUE BRANDING)
+======================================================= */
+
+.terminal {
+    background: var(--bg-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 24px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9rem;
+    color: #4ade80;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-/* ─── Dot grid (bottom footer area) ─── */
-.dot-grid-footer {
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-    background-size: 20px 20px;
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #4ade80;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* =======================================================
+   MUTED TEXT
+======================================================= */
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.text-loud {
+    color: var(--text-strong);
 }

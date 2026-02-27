@@ -2,108 +2,6 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-
-const pillars = [
-  {
-    icon: `<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>`,
-    title: "Performance",
-    description: "By removing unnecessary background processes and telemetry, we free up CPU and RAM for the things that matter — faster boot times, snappier responsiveness, and more headroom for every task.",
-  },
-  {
-    icon: `<path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>`,
-    title: "Usability",
-    description: "By removing Windows' advertising, fixing general annoyances, and streamlining the interface, you'll get a cleaner, faster experience daily.",
-  },
-  {
-    icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
-    title: "Privacy",
-    description: "By eliminating most of the platform's notorious tracking, pre-installed apps, and bloatware, ArcOS makes Windows genuinely private.",
-  },
-];
-
-const benchmarks = [
-  {
-    icon: `<rect x="2" y="2" width="20" height="20" rx="2"/><path d="M9 12h6M12 9v6"/>`,
-    title: "CPU usage",
-    arcOS: "4.2%",
-    stock: "9.3%",
-    label: "2.2× less CPU at idle",
-  },
-  {
-    icon: `<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>`,
-    title: "RAM usage",
-    arcOS: "1.3 GB",
-    stock: "2.7 GB",
-    label: "1.4 GB less RAM at idle",
-  },
-  {
-    icon: `<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>`,
-    title: "Boot time",
-    arcOS: "8.1 s",
-    stock: "22.4 s",
-    label: "2.7× faster cold boot average",
-  },
-];
-
-const detailedFeatures = [
-  {
-    icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
-    title: "Enhanced privacy by design",
-    description: "Reduces Windows telemetry and data collection by disabling invasive services and implementing privacy-focused policies for minimal data sharing.",
-  },
-  {
-    icon: `<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>`,
-    title: "Optimized performance",
-    description: "Implements meaningful enhancements for responsiveness and low latency without sacrificing stability or compatibility with your existing apps.",
-  },
-  {
-    icon: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/>`,
-    title: "Flexible security",
-    description: "Customize security settings like Defender and SmartScreen to balance protection and performance exactly according to your preference.",
-  },
-  {
-    icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`,
-    title: "Streamlined usability",
-    description: "Removes bloatware and ads for a cleaner, faster interface configured for optimal user experience right out of the box.",
-  },
-  {
-    icon: `<polyline points="23 4 23 8 19 8"/><polyline points="1 20 1 16 5 16"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 8M1 16l4.64 4.36A9 9 0 0 0 20.49 15"/>`,
-    title: "Stays up-to-date",
-    description: "Applies security patches and cumulative updates automatically. Feature updates are skipped to preserve your performance optimizations.",
-  },
-  {
-    icon: `<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>`,
-    title: "For desktops and laptops",
-    description: "Configure power-saving features for up to 3 hours of extra battery life. Internally tested and validated across multiple device types.",
-  },
-];
-
-const faqs = [
-  {
-    q: "Will ArcOS break Windows Update?",
-    a: "No. Windows Update remains fully functional. ArcOS only disables peer-to-peer update delivery. Updates can optionally be deferred via the Toolbox.",
-  },
-  {
-    q: "Will I lose my files?",
-    a: "No. ArcOS only modifies system settings and services. Your personal files, applications, and user data are never touched.",
-  },
-  {
-    q: "Can I uninstall ArcOS?",
-    a: "Yes, fully. Open the ArcOS Toolbox and click Revert All Changes, or use Windows System Restore if you created a restore point before install.",
-  },
-  {
-    q: "Does it work with Windows 11 24H2?",
-    a: "Yes. ArcOS is tested against all current Windows 10 and Windows 11 feature versions, including 24H2.",
-  },
-  {
-    q: "Is ArcOS open source?",
-    a: "Yes. The full source code is available on GitHub under the MIT license. You can audit, fork, and contribute freely.",
-  },
-  {
-    q: "Does ArcOS help with performance-heavy tasks?",
-    a: "Yes. By reducing background CPU and RAM usage, ArcOS gives more headroom to demanding software — video editing, compilation, rendering, and more.",
-  },
-];
 ---
 
 <!DOCTYPE html>
@@ -113,286 +11,243 @@ const faqs = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="apple-touch-icon" href="/logo.png" />
 
-    <!-- Primary SEO -->
-    <title>ArcOS — Optimized Windows for Enthusiasts</title>
-    <meta name="description" content="ArcOS is a lean, privacy-first build of Windows engineered for raw speed. No bloat, no telemetry — up to 2.7× faster boot times and significantly lower idle resource usage." />
-    <meta name="keywords" content="ArcOS, optimized Windows, fast Windows, Windows debloat, Windows privacy, Windows performance, bloatware removal, telemetry disable, Windows enthusiast, open source Windows" />
-    <meta name="author" content="Criminas" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#020d1f" />
-    <link rel="canonical" href="https://os.arcbase.one/" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://os.arcbase.one/" />
-    <meta property="og:site_name" content="ArcOS" />
-    <meta property="og:title" content="ArcOS — Optimized Windows for Enthusiasts" />
-    <meta property="og:description" content="Lean, privacy-first Windows. No bloat. No telemetry. Up to 2.7× faster boot times. Open source under the MIT license." />
-    <meta property="og:image" content="https://os.arcbase.one/wallpaper.png" />
-    <meta property="og:image:alt" content="ArcOS desktop preview" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="720" />
-    <meta property="og:locale" content="en_US" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ArcOS — Optimized Windows for Enthusiasts" />
-    <meta name="twitter:description" content="Lean, privacy-first Windows. No bloat. No telemetry. Up to 2.7× faster boot times." />
-    <meta name="twitter:image" content="https://os.arcbase.one/wallpaper.png" />
-    <meta name="twitter:image:alt" content="ArcOS desktop preview" />
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ArcOS",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Windows",
-      "url": "https://os.arcbase.one",
-      "downloadUrl": "https://github.com/criminas/arcos/releases",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "description": "ArcOS is a lean, privacy-first build of Windows engineered for raw speed. Removes telemetry, bloatware, and unnecessary background services for up to 2.7× faster boot times.",
-      "featureList": [
-        "Removes 35+ unnecessary background services",
-        "Disables Windows telemetry and tracking",
-        "Up to 2.7x faster cold boot times",
-        "Significantly lower idle CPU and RAM usage",
-        "Fully reversible"
-      ],
-      "screenshot": "https://os.arcbase.one/wallpaper.png",
-      "softwareVersion": "0.0.1-beta",
-      "releaseNotes": "https://github.com/criminas/arcos/releases",
-      "author": {
-        "@type": "Organization",
-        "name": "Criminas",
-        "url": "https://arcbase.one"
-      },
-      "license": "https://opensource.org/licenses/MIT"
-    })} />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <title>ArcOS — Deterministic Windows Configuration Framework</title>
+    <meta name="description" content="ArcOS is a modular Windows configuration framework that applies a reproducible, performance-focused system profile without modifying or redistributing Windows." />
+    <meta name="theme-color" content="#0b0f1a" />
   </head>
+
   <body>
     <Header />
 
     <main>
 
-      <!-- ─── HERO ─────────────────────────────────────────────── -->
-      <section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden dot-particles px-6 pt-24 pb-20">
-        <div class="hero-glow absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+      <!-- HERO -->
+      <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-20">
+        <div class="max-w-4xl">
+          <h1 class="text-5xl sm:text-6xl md:text-7xl font-semibold leading-[1.05] tracking-tight mb-8">
+            Deterministic Windows deployment.<br />
+            Without <span class="text-loud">rebuilding</span> the OS.
+          </h1>
 
-        <div class="flex items-center justify-center gap-2 mb-8 text-sm text-white/70">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-          Over <span class="text-accent font-semibold mx-1">10,000+</span> people using ArcOS
-        </div>
+          <p class="text-muted text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+            ArcOS applies a structured configuration layer on top of a clean Windows installation.
+            It reduces unnecessary services, scheduled tasks, consumer features, and background
+            components — while preserving system integrity and update compatibility.
+          </p>
 
-        <h1 class="text-5xl sm:text-6xl md:text-7xl font-semibold leading-[1.08] tracking-tight max-w-4xl mb-6">
-          Optimized Windows.<br/>Designed for enthusiasts.
-        </h1>
-
-        <p class="text-muted text-base sm:text-lg max-w-xl leading-relaxed mb-3">
-          ArcOS creates a leaner Windows experience — stripping out bloatware and squeezing every bit
-          of performance from your hardware, for enthusiasts and privacy-conscious users alike.
-        </p>
-
-        <p class="text-sm text-white/45 mb-8">
-          The latest version is&nbsp;<strong class="text-white/80 font-semibold">ArcOS v0.0.1 BETA (February 2026)</strong>
-        </p>
-
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a href="https://github.com/criminas/arcos/releases" target="_blank" rel="noopener noreferrer" class="btn-primary">
-            Get started
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="https://github.com/criminas/arcos" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/>
-            </svg>
-            Star on GitHub
-          </a>
-        </div>
-
-        <!-- Preview screenshot -->
-        <div class="relative mt-16 w-full max-w-4xl mx-auto">
-          <!-- Glow behind the frame -->
-          <div class="absolute inset-x-0 -bottom-8 h-24 bg-blue-600/20 blur-2xl rounded-full pointer-events-none"></div>
-          <!-- Frame -->
-          <div class="relative rounded-xl overflow-hidden border border-white/[0.12] shadow-[0_32px_80px_rgba(0,0,0,0.6)]">
-            <img src="/wallpaper.png" alt="ArcOS Wallpaper" class="w-full block object-cover object-top" />
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://github.com/Arcbasehq/arcos/releases" target="_blank" class="btn-primary">
+              Download
+            </a>
+            <a href="https://github.com/Arcbasehq/arcos" target="_blank" class="btn-secondary">
+              View Source
+            </a>
           </div>
         </div>
       </section>
 
-      <!-- ─── FEATURES ─────────────────────────────────────────── -->
-      <section id="features" class="relative pb-20 px-8">
-        <div class="max-w-7xl mx-auto">
-          <div class="section-sep mb-20"></div>
+      <!-- ARCHITECTURE -->
+      <section class="px-8 py-28 border-t border-white/[0.06]" id="performance">
+        <div class="max-w-6xl mx-auto">
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 items-start">
-            <div>
-              <p class="text-muted text-base mb-2">Tired of bloatware?</p>
-              <h2 class="text-4xl md:text-5xl font-bold leading-tight">
-                Ditch the defaults.<br/>
-                Upgrade to <span class="text-accent">ArcOS</span>.
-              </h2>
-            </div>
-            <div class="md:pt-2">
-              <p class="text-muted text-base leading-relaxed">
-                ArcOS is a modified version of Windows, stripped back to what matters and optimized
-                for raw speed. We make Windows more responsive and less intrusive, with many users
-                reporting faster boot times, lower latency, and cleaner workflows — while remaining
-                fully configurable and compatible with all your existing software.
-              </p>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {pillars.map((p) => (
-              <div>
-                <div class="icon-box mb-5">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={p.icon}/>
-                </div>
-                <h3 class="text-white font-bold text-lg mb-3">{p.title}</h3>
-                <p class="text-muted text-sm leading-relaxed">{p.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- ─── BENCHMARKS ────────────────────────────────────────── -->
-      <section id="performance" class="relative px-8 pb-32">
-        <div class="max-w-7xl mx-auto">
-          <div class="section-sep mb-24"></div>
-
-          <div class="text-center mb-16">
-            <p class="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-5">Benchmarks</p>
-            <h2 class="text-4xl md:text-5xl font-bold mb-5">
-              <span class="text-accent">ArcOS</span> vs. Stock Windows
+          <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+              Architecture
             </h2>
-            <p class="text-muted text-base max-w-lg mx-auto leading-relaxed mb-8">
-              With reduced resource utilization, improved privacy, and better performance —
-              why wouldn't you consider making the switch?
+            <p class="text-muted max-w-2xl mx-auto leading-relaxed">
+              ArcOS is not a modified Windows build. It is a deployment framework composed
+              of isolated execution engines operating on official Windows installations.
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {benchmarks.map((b) => (
-              <div>
-                <div class="icon-box mb-6">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={b.icon}/>
-                </div>
-                <h3 class="text-white font-bold text-lg mb-4">{b.title}</h3>
-                <div class="space-y-3">
-                  <div>
-                    <div class="flex items-center justify-between text-sm mb-1.5">
-                      <span class="text-white/50">ArcOS</span>
-                      <span class="text-accent font-semibold">{b.arcOS}</span>
-                    </div>
-                    <div class="h-1.5 rounded-full bg-white/6 overflow-hidden">
-                      <div class="h-full rounded-full bg-[#2563eb] w-[45%]"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex items-center justify-between text-sm mb-1.5">
-                      <span class="text-white/50">Stock Windows</span>
-                      <span class="text-white/50">{b.stock}</span>
-                    </div>
-                    <div class="h-1.5 rounded-full bg-white/6 overflow-hidden">
-                      <div class="h-full rounded-full bg-white/20 w-[100%]"></div>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-muted text-xs mt-3">{b.label}</p>
-              </div>
-            ))}
+          <div class="grid md:grid-cols-3 gap-14">
+
+            <div>
+              <h3 class="text-white font-semibold text-lg mb-4">
+                Modular Engines
+              </h3>
+              <p class="text-muted text-sm leading-relaxed">
+                Services, scheduled tasks, policies, AppX packages, UI configuration,
+                and performance tuning operate as independent modules.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-white font-semibold text-lg mb-4">
+                Manifest-Driven Execution
+              </h3>
+              <p class="text-muted text-sm leading-relaxed">
+                System behavior is defined by configuration manifests rather than
+                hardcoded tweaks. Execution is reproducible and deterministic.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-white font-semibold text-lg mb-4">
+                Reversible by Design
+              </h3>
+              <p class="text-muted text-sm leading-relaxed">
+                Restore points and state tracking are created before modification,
+                enabling controlled rollback if required.
+              </p>
+            </div>
+
           </div>
         </div>
       </section>
 
-      <!-- ─── DETAILED FEATURE GRID ────────────────────────────── -->
-      <section class="px-8 pb-20">
-        <div class="max-w-7xl mx-auto">
-          <div class="border-t border-white/[0.08] mb-16"></div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-            {detailedFeatures.map((f, i) => (
-              <div class={`flex gap-5 py-8 ${i % 2 === 0 ? "md:pr-12 md:border-r md:border-white/[0.08]" : "md:pl-12"} ${i < detailedFeatures.length - 2 ? "border-b border-white/[0.08]" : ""}`}>
-                <div class="icon-box flex-shrink-0 mt-0.5">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={f.icon}/>
-                </div>
-                <div>
-                  <h3 class="text-white font-bold text-base mb-2">{f.title}</h3>
-                  <p class="text-muted text-sm leading-relaxed">{f.description}</p>
-                </div>
-              </div>
-            ))}
+      <!-- SYSTEM CHANGES -->
+      <section class="px-8 py-28 border-t border-white/[0.06]" id="features">
+        <div class="max-w-6xl mx-auto">
+
+          <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+              System Changes Applied
+            </h2>
+            <p class="text-muted max-w-2xl mx-auto leading-relaxed">
+              ArcOS applies targeted system-level adjustments using supported
+              Windows configuration mechanisms.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-16">
+
+            <div>
+              <h3 class="text-white font-semibold text-lg mb-4">
+                Service Optimization
+              </h3>
+              <p class="text-muted text-sm leading-relaxed">
+                Disables telemetry, consumer services, Xbox components,
+                and non-essential background services while preserving
+                core system stability.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-white font-semibold text-lg mb-4">
+                AppX Rationalization
+              </h3>
+              <p class="text-muted text-sm leading-relaxed">
+                Removes provisioned and installed consumer applications,
+                retaining only required system frameworks.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-white font-semibold text-lg mb-4">
+                Policy Enforcement
+              </h3>
+              <p class="text-muted text-sm leading-relaxed">
+                Applies privacy, background activity, and update behavior
+                policies using supported registry and policy configurations.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-white font-semibold text-lg mb-4">
+                UI & Resource Reduction
+              </h3>
+              <p class="text-muted text-sm leading-relaxed">
+                Reduces animation overhead, transparency effects,
+                consumer prompts, and idle background activity.
+              </p>
+            </div>
+
           </div>
         </div>
       </section>
 
-      <!-- ─── FAQ ────────────────────────────────────────────────── -->
-      <section class="relative px-8 pb-24">
+      <!-- WHAT ARCOS DOES NOT DO -->
+      <section class="px-8 py-28 border-t border-white/[0.06] text-center">
         <div class="max-w-3xl mx-auto">
-          <div class="section-sep mb-20"></div>
-          <div class="mb-12 text-center">
-            <p class="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">FAQ</p>
-            <h2 class="text-4xl md:text-5xl font-bold">Frequently asked questions</h2>
-          </div>
-          <div class="divide-y divide-white/[0.08]">
-            {faqs.map((f) => (
-              <details class="faq-item group py-5">
-                <summary class="flex items-center justify-between gap-4 cursor-pointer list-none select-none">
-                  <span class="text-white font-semibold text-[15px]">{f.q}</span>
-                  <svg class="faq-chevron flex-shrink-0 text-white/40 group-open:text-accent transition-transform duration-300 group-open:rotate-180"
-                    width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 9l6 6 6-6"/>
-                  </svg>
-                </summary>
-                <p class="text-muted text-sm leading-relaxed mt-3 pr-8">{f.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <!-- ─── COMMUNITY CTA ─────────────────────────────────────── -->
-      <section id="community" class="relative px-8 pb-24 text-center">
-        <div class="max-w-3xl mx-auto">
-          <p class="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-5">Join our community</p>
-          <h2 class="text-4xl md:text-5xl font-bold mb-5">
-            Be part of the <span class="text-accent">ArcOS</span> community
+          <h2 class="text-4xl md:text-5xl font-bold mb-12">
+            What ArcOS Does Not Do
           </h2>
-          <p class="text-muted text-base max-w-md mx-auto leading-relaxed mb-9">
-            Join our growing community of hundreds of thousands of ArcOS users.
-            Contribute, share, and stay updated.
-          </p>
-          <div class="flex items-center justify-center">
-            <a href="https://github.com/criminas/arcos" target="_blank" rel="noopener noreferrer" class="btn-primary">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/>
-              </svg>
-              Star on GitHub
-            </a>
+
+          <ul class="space-y-4 text-muted text-sm">
+            <li>No custom Windows ISO</li>
+            <li>No kernel patching</li>
+            <li>No binary modification</li>
+            <li>No update blocking</li>
+            <li>No redistribution of Windows components</li>
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- FAQ (DROPDOWN) -->
+      <section class="px-8 py-28 border-t border-white/[0.06]">
+        <div class="max-w-3xl mx-auto">
+
+          <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+            Frequently Asked Questions
+          </h2>
+
+          <div class="divide-y divide-white/[0.08]">
+
+            <details class="group py-6">
+              <summary class="flex justify-between items-center cursor-pointer list-none">
+                <span class="text-white font-semibold">
+                  Does ArcOS replace Windows?
+                </span>
+                <span class="text-muted group-open:rotate-180 transition-transform duration-300">
+                  ▾
+                </span>
+              </summary>
+              <p class="text-muted text-sm mt-4 leading-relaxed">
+                No. ArcOS operates on top of an official Windows installation.
+                It applies configuration changes without modifying system binaries.
+              </p>
+            </details>
+
+            <details class="group py-6">
+              <summary class="flex justify-between items-center cursor-pointer list-none">
+                <span class="text-white font-semibold">
+                  Is Windows Update preserved?
+                </span>
+                <span class="text-muted group-open:rotate-180 transition-transform duration-300">
+                  ▾
+                </span>
+              </summary>
+              <p class="text-muted text-sm mt-4 leading-relaxed">
+                Yes. Security updates remain functional. ArcOS does not forcibly block
+                feature updates.
+              </p>
+            </details>
+
+            <details class="group py-6">
+              <summary class="flex justify-between items-center cursor-pointer list-none">
+                <span class="text-white font-semibold">
+                  Is ArcOS open source?
+                </span>
+                <span class="text-muted group-open:rotate-180 transition-transform duration-300">
+                  ▾
+                </span>
+              </summary>
+              <p class="text-muted text-sm mt-4 leading-relaxed">
+                Yes. All engines and configuration logic are publicly available on GitHub.
+              </p>
+            </details>
+
           </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="px-8 pb-32 text-center border-t border-white/[0.06]">
+        <div class="max-w-3xl mx-auto">
+
+          <h2 class="text-4xl md:text-5xl font-bold mb-8">
+            Structured. Transparent. Reversible.
+          </h2>
+
+          <a href="https://github.com/Arcbasehq/arcos" target="_blank" class="btn-primary">
+            View on GitHub
+          </a>
+
         </div>
       </section>
 
